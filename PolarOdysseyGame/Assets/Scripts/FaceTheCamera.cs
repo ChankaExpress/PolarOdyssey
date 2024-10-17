@@ -20,13 +20,12 @@ public class FaceTheCamera : MonoBehaviour
 
     void Update()
     {
-        
+        // spriteTransform.LookAt(cameraTransform);
     }
 
     IEnumerator faceCamera() {
         while(true) {
-            Vector3 direction = cameraTransform.position - spriteTransform.position;
-            spriteTransform.rotation = Quaternion.LookRotation(direction);
+            spriteTransform.LookAt(cameraTransform);
             yield return null;
         }
     }

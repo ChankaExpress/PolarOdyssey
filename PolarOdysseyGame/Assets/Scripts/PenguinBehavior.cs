@@ -61,7 +61,6 @@ public class PenguinBehavior : MonoBehaviour
             yield return null;
         }
 
-        spriteTransform.rotation = Quaternion.Euler(0, randomAngle, 0);
 
         yield return standingStill();
     }
