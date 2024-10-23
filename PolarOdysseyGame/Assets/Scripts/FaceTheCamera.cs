@@ -15,18 +15,18 @@ public class FaceTheCamera : MonoBehaviour
     void Start()
     {
         cameraTransform = Camera.main.transform;
-        StartCoroutine(faceCamera());
+        // StartCoroutine(faceCamera());
     }
 
     void Update()
     {
-        // spriteTransform.LookAt(cameraTransform);
+        spriteTransform.LookAt(cameraTransform);
     }
 
-    IEnumerator faceCamera() {
-        while(true) {
-            spriteTransform.LookAt(cameraTransform);
-            yield return null;
-        }
-    }
+    // IEnumerator faceCamera() {
+    //     while(true) {
+    //         spriteTransform.LookAt(cameraTransform);
+    //         yield return null;
+    //     }
+    // }
 }
