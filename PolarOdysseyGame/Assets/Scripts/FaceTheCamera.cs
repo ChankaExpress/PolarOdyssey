@@ -21,6 +21,7 @@ public class FaceTheCamera : MonoBehaviour
     void Update()
     {
         spriteTransform.LookAt(cameraTransform);
+        spriteTransform.LookAt(spriteTransform.position - spriteTransform.forward, spriteTransform.up);
     }
 
     // IEnumerator faceCamera() {

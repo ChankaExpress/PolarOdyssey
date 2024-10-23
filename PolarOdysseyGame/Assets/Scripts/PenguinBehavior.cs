@@ -57,6 +57,8 @@ public class PenguinBehavior : MonoBehaviour
             targetRotation *= Quaternion.Euler(0, 0, 5 * Mathf.Sin(10 * Time.time));
             spriteTransform.rotation = targetRotation;
 
+            spriteTransform.LookAt(spriteTransform.position - spriteTransform.forward, spriteTransform.up);
+
             randomMoveTime -= Time.deltaTime;
             yield return null;
         }
