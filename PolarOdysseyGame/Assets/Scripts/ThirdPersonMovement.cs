@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public CharacterController controller;
     public Transform camer; 
@@ -13,6 +12,15 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -22,10 +30,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-
-
-            
-
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camer.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
