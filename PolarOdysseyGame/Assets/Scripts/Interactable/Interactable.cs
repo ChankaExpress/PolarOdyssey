@@ -39,12 +39,16 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag != "Player") return;
+
         Debug.Log("OnTriggerEnter");
         this.enabled = true;
     }
 
     void OnTriggerExit(Collider other)
     {
+        if(other.gameObject.tag != "Player") return;
+
         Debug.Log("OnTriggerExit");
         this.enabled = false;
     }
