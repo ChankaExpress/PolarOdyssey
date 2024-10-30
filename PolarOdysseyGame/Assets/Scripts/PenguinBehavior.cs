@@ -20,7 +20,7 @@ public class PenguinBehavior : MonoBehaviour
     void Start()
     {
         spriteTransform = penguinTransform.Find("Sprite");
-        StartCoroutine(standingStill());
+        StartCoroutine(randomBehaviour());
     }
 
     void Update()
@@ -28,11 +28,17 @@ public class PenguinBehavior : MonoBehaviour
         
     }
 
+    IEnumerator randomBehaviour() {
+        while(true) {
+            yield return standingStill();
+            yield return moveRandomly();
+        }
+    }
+
     IEnumerator standingStill() {
         isMoving = false;
         float randomWaitTime = Random.Range(1f, 5f);
         yield return new WaitForSeconds(randomWaitTime);
-        yield return moveRandomly();
     }
 
     IEnumerator moveRandomly() {
@@ -62,8 +68,5 @@ public class PenguinBehavior : MonoBehaviour
             randomMoveTime -= Time.deltaTime;
             yield return null;
         }
-
-
-        yield return standingStill();
     }
 }
