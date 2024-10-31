@@ -6,13 +6,14 @@ using UnityEngine;
 interface IInteractable
 {
     void Interact();
-    void Interact(Transform interactor);
+    void Interact(Interactor interactor);
 }
 
 public class Interactor : MonoBehaviour
 {
     public Transform interactorSource;
     public float interactRange = 3.5f;
+    private bool isInteracting = false;
 
     void Start()
     {
@@ -21,17 +22,19 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) findAndInteract();
+        if(Input.GetKeyDown(KeyCode.E) && !isInteracting) FindAndInteract();
     }
 
-    void findAndInteract()
+    void FindAndInteract()
     {
         if(Physics.Raycast(interactorSource.position, interactorSource.forward, out RaycastHit hit, interactRange))
         {
             Debug.Log("Interacting with " + hit.transform.name);
-            if(hit.collider.gameObject.TryGetComponent(out IInteractable interactable)) interactable.Interact(interactorSource);
+            if(hit.collider.gameObject.TryGetComponent(out IInteractable interactable)) interactable.Interact(this);
         }
     }
 
-
+    public void SetInteracting(bool interacting) {
+        this.isInteracting = interacting;
+    }
 }
