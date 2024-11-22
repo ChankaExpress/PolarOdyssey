@@ -9,9 +9,9 @@ public class InputToAnimation : MonoBehaviour
     public float minimumSpeedToWalk = 0.1f;
     public float maximumSpeedToStandStill = 0.9f;
 
-    public float xInput;
-    public float yInput;
-    public bool isWalking;
+    protected float xInput;
+    protected float yInput;
+    protected bool isWalking;
 
     private IState state;
     
