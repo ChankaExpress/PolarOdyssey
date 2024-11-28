@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2b657b9e8a428164592795ff214d9d91
+guid: 2be36826b0c14ef4984dc6d825c2b3ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,18 +95,84 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: idle_back_0
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 148
+        width: 334
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd897c72f930b645a2998e0d1bd9c95
+      internalID: -1219208334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_back_1
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 148
+        width: 332
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d745d1b00a647864488785ed5d83af87
+      internalID: 423591416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_back_2
+      rect:
+        serializedVersion: 2
+        x: 4591
+        y: 148
+        width: 332
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1459959cc5f64747b32f64e13a1aa48
+      internalID: -912284161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      idle_back_0: -1219208334
+      idle_back_1: 423591416
+      idle_back_2: -912284161
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -21,6 +21,8 @@ public class Pickupable : MonoBehaviour, IInteractable
         this.GetComponent<Rigidbody>().isKinematic = true;
         state = new PickedUpState(this, interactor);
         interactor.SetInteracting(true);
+
+        if(isPickedUp) {/*this if is used to avoid the isPickedUp never used warning*/}
     }
 
     void Start()

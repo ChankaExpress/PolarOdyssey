@@ -31,6 +31,25 @@ public class InputToAnimation : MonoBehaviour
         animator.SetFloat("xMovement", xInput);
         animator.SetFloat("yMovement", yInput);
         animator.SetBool("isWalking", isWalking);
+        if(isWalking && yInput!=0) animator.SetFloat("yLastMovement", yInput);
+        handleMirroring();
+    }
+
+    void handleMirroring() {
+        if(xInput==0) return;
+        if(!isWalking) return;
+
+        int directionMultiplier = xInput > 0 ? 1 : -1;
+
+        Vector3 localScale = animator.gameObject.transform.localScale;
+        if (Mathf.Sign(localScale.x) != directionMultiplier)
+        {
+            animator.gameObject.transform.localScale = new Vector3(
+                Mathf.Abs(localScale.x) * directionMultiplier,
+                localScale.y,
+                localScale.z
+            );
+        }
     }
 
     bool isAboveMinimum() {
