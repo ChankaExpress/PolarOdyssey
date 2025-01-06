@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThirdPersonMovement : MonoBehaviour
+public class ThirdPersonMovement : MonoBehaviour, IFreezeInputListener
 {
 
     public CharacterController controller;
@@ -12,7 +12,9 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f;
     [SerializeField] const float GRAVITY = 9.81f;
+    public GameObject cameraController;
     float turnSmoothVelocity;
+    bool inputFrozen = false;
 
 
     // Start is called before the first frame update
@@ -27,6 +29,10 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!inputFrozen) processInput();
+    }
+
+    private void processInput(){
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3 (horizontal, 0, vertical).normalized;
@@ -42,5 +48,21 @@ public class ThirdPersonMovement : MonoBehaviour
             moveDirection.y = controller.isGrounded ? 0f : -GRAVITY;
             controller.Move(moveDirection * Time.deltaTime);
         }
+    }
+
+    public void FreezeInput()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        cameraController.SetActive(false);
+        inputFrozen = true;
+    }
+
+    public void UnfreezeInput()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        cameraController.SetActive(true);
+        inputFrozen = false;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 interface IInteractable
@@ -8,11 +9,15 @@ interface IInteractable
     void Interact(Interactor interactor);
 }
 
+interface IFreezeInputListener {
+    void FreezeInput();
+    void UnfreezeInput();
+}
 
 /*
 this script is meant to be put on the interactor collider
 */
-public class Interactor : MonoBehaviour
+public class Interactor : MonoBehaviour, IFreezeInputListener
 {
     public Transform interactorPosition;
     public float interactRange = 3.5f;
@@ -22,6 +27,8 @@ public class Interactor : MonoBehaviour
 
     private GameObject player;
     private List<GameObject> interactables = new List<GameObject>();
+    private bool inputFrozen = false;
+    private IEnumerable<IFreezeInputListener> freezeListeners;
 
 /*
 interactor may walk around; once it approaches an interactable, detected by a collision with a trigger
@@ -31,7 +38,7 @@ interactor may walk around; once it approaches an interactable, detected by a co
             a) take the angle between the player's front vector and the interactable's position
             b) take the distance from the player's position to interactable's position
             c) take the multiple of a) and b) to make it possible to reach things player is looking at, but are farther away
-        option b) will be taken for its simplicity and then changed if it proves inadequate
+        **option b) will be taken for its simplicity and then changed if it proves inadequate
 */
     void Start()
     {
@@ -41,7 +48,7 @@ interactor may walk around; once it approaches an interactable, detected by a co
 
     void Update()
     {
-        ProcessInput();
+        if(!inputFrozen) ProcessInput();
     }
 
     void ProcessInput(){
@@ -82,5 +89,28 @@ interactor may walk around; once it approaches an interactable, detected by a co
 
     public void SetInteracting(bool interacting) {
         this.isInteracting = interacting;
+    }
+
+    public void StartMinigame(){
+        freezeListeners = FindObjectsOfType<MonoBehaviour>().ToList().OfType<IFreezeInputListener>();
+        foreach(IFreezeInputListener listener in freezeListeners){
+            listener.FreezeInput();
+        }
+    }
+
+    public void EndMinigame(){
+        foreach(IFreezeInputListener listener in freezeListeners){
+            listener.UnfreezeInput();
+        }
+    }
+
+    public void FreezeInput()
+    {
+        inputFrozen = true;
+    }
+
+    public void UnfreezeInput()
+    {
+        inputFrozen = false;
     }
 }
