@@ -26,7 +26,7 @@ public class InputToAnimation : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
-        state.CalculateWalkingState();
+        state.DetermineNextState();
 
         animator.SetFloat("xMovement", xInput);
         animator.SetFloat("yMovement", yInput);
@@ -65,13 +65,13 @@ public class InputToAnimation : MonoBehaviour
         public IState(InputToAnimation parent) {
             this.parent = parent;
         }
-        public virtual void CalculateWalkingState(){}
+        public virtual void DetermineNextState(){}
     }
 
     class IdleState : IState {
         public IdleState(InputToAnimation parent) : base(parent){}
 
-        override public void CalculateWalkingState() {
+        override public void DetermineNextState() {
             parent.isWalking = parent.isAboveMinimum();
 
             if(!parent.isUnderMaximum()) parent.state = new WalkingState(parent);
@@ -81,7 +81,7 @@ public class InputToAnimation : MonoBehaviour
     class WalkingState : IState {
         public WalkingState(InputToAnimation parent) : base(parent){}
 
-        override public void CalculateWalkingState() {
+        override public void DetermineNextState() {
             parent.isWalking = !parent.isUnderMaximum();
 
             if(!parent.isAboveMinimum()) parent.state = new IdleState(parent);

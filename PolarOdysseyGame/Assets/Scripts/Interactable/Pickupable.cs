@@ -1,33 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pickupable : MonoBehaviour, IInteractable
 {
-    private bool isPickedUp = false;
     private State state;
-
-    public void Interact()
-    {
-    }
 
     public void Interact(Interactor interactor)
     {
-        Debug.Log("Picking up " + this.gameObject.name);
-
-        isPickedUp = true;
-        this.gameObject.transform.SetParent(interactor.transform);
-        this.gameObject.transform.localPosition = new Vector3(0, 0, 3);
-        this.GetComponent<Rigidbody>().isKinematic = true;
-        state = new PickedUpState(this, interactor);
-        interactor.SetInteracting(true);
-
-        if(isPickedUp) {/*this if is used to avoid the isPickedUp never used warning*/}
+        state.Interact(interactor);
     }
 
     void Start()
     {
-        state = new State();
+        state = new State(this);
     }
 
     void Update()
@@ -36,32 +23,45 @@ public class Pickupable : MonoBehaviour, IInteractable
     }
 
     class State {
+        protected Pickupable pickupable;
+        public State(Pickupable pickupable) {
+            this.pickupable = pickupable;
+        }
+
         virtual public void Update(){}
+
+        virtual public void Interact(Interactor interactor){
+            Debug.Log("Picking up " + pickupable.gameObject.name);
+
+            pickupable.gameObject.transform.SetParent(interactor.transform);
+            pickupable.gameObject.transform.localPosition = new Vector3(0, 0, 3);
+            pickupable.GetComponent<Rigidbody>().isKinematic = true;
+            pickupable.state = new PickedUpState(pickupable, interactor);
+            interactor.SetInteracting(true);
+        }
     }
 
     class PickedUpState : State {
-        Pickupable pickupable;
         Interactor interactor;
 
-        public PickedUpState(Pickupable pickupable, Interactor interactor) {
-            this.pickupable = pickupable;
+        public PickedUpState(Pickupable pickupable, Interactor interactor) : base(pickupable) {
             this.interactor = interactor;
         }
 
         override public void Update() {
-            pickupable.gameObject.transform.localPosition = new Vector3(0, -2, -4);
+            pickupable.gameObject.transform.localPosition = new Vector3(-0.1f, 0.2f, 0);
+        }
 
-            if(Input.GetKeyDown(KeyCode.Q)) {
-                Debug.Log("Dropping " + pickupable.gameObject.name);
+        public override void Interact(Interactor interactor)
+        {
+            Debug.Log("Dropping " + pickupable.gameObject.name);
 
-                this.interactor.SetInteracting(false);
+            this.interactor.SetInteracting(false);
 
-                pickupable.isPickedUp = false;
-                pickupable.GetComponent<Rigidbody>().isKinematic = false;
-                pickupable.GetComponent<Rigidbody>().velocity = pickupable.GetComponentInParent<Rigidbody>().velocity;
-                pickupable.gameObject.transform.SetParent(null);
-                pickupable.state = new State();
-            }
+            pickupable.GetComponent<Rigidbody>().isKinematic = false;
+            pickupable.GetComponent<Rigidbody>().velocity = pickupable.GetComponentInParent<Rigidbody>().velocity;
+            pickupable.gameObject.transform.SetParent(null);
+            pickupable.state = new State(pickupable);
         }
     }
 }
