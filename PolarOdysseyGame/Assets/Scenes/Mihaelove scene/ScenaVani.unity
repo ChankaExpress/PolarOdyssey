@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5880207534000277538, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
+      propertyPath: field of view
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7008158057240645449, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_Name
       value: Third Person Player
@@ -694,7 +698,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.5529412, g: 0.25882354, b: 0.53830063, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1729,7 +1733,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.30168524, g: 0.554717, b: 0.25851902, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
