@@ -9,11 +9,13 @@ public class SnowScript : MonoBehaviour
     private Rigidbody2D rb2D;      
     public float snowSize = 2f;
     public float broomSize = 2f;
+    private float maxDistanceSquared;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         rb2D = GetComponent<Rigidbody2D>();
+        maxDistanceSquared = (snowSize+broomSize) * (snowSize+broomSize);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,7 +39,12 @@ public class SnowScript : MonoBehaviour
 
     public void applyBroomEffect(Vector2 broomAnchoredPos)
     {
-        float dX = broomAnchoredPos.x - rectTransform.anchoredPosition.x;
-        float dY = broomAnchoredPos.y - rectTransform.anchoredPosition.y;
+        float dX = rectTransform.anchoredPosition.x - broomAnchoredPos.x;
+        float dY = rectTransform.anchoredPosition.y - broomAnchoredPos.y;
+
+        if(Math.Abs(dX) > snowSize + broomSize || Math.Abs(dY) > snowSize + broomSize) return;
+        if(dX*dX + dY*dY > maxDistanceSquared) return;
+
+        rb2D.velocity = 
     }
 }
