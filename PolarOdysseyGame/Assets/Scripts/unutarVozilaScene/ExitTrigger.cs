@@ -17,10 +17,6 @@ public class ExitTrigger : MonoBehaviour
         {
             playerInZone = true;
             Debug.Log("Press F to exit");
-            if (Input.GetKeyDown(KeyCode.F)) // ako F
-            {
-                LoadNewScene();
-            }
         }
     }
 
@@ -38,6 +34,7 @@ public class ExitTrigger : MonoBehaviour
         if (playerInZone && Input.GetKeyDown(KeyCode.F)) // Ako je igrač u zoni i pritisne F
         {
             Debug.Log("Exited!");
+            LoadNewScene();
         }
     }
     void LoadNewScene()

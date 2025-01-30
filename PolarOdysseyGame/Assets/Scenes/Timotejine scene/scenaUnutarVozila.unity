@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e55b404f4a6bc4a9e22877dda5b088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
-  sceneToLoad: {fileID: 0}
+  sceneName: ScenaVani
+  sceneToLoad: {fileID: 102900000, guid: 1eb1b2f76d03efd4cb0d12e0f95e9627, type: 3}
 --- !u!135 &756323804
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -810,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1265101898257713688, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1419822930482836234, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -898,11 +898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7249099970499521692, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.383401
+      value: 2.539752
       objectReference: {fileID: 0}
     - target: {fileID: 7249099970499521692, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3104848
+      value: 1.376009
       objectReference: {fileID: 0}
     - target: {fileID: 7249099970499521692, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -910,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7249099970499521692, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.019987
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 7249099970499521692, guid: 0976a5d313ea9344796b25292d687bf5, type: 3}
       propertyPath: m_LocalPosition.z
