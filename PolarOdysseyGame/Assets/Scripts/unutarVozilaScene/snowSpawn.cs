@@ -37,6 +37,6 @@ public class snowSpawn : MonoBehaviour
 
     void spawnSnow()
     {
-        Instantiate(snow, new Vector3(0, -10, -70), transform.rotation);
+        Instantiate(snow, new Vector3(0, -10, 80), transform.rotation);
     }
 }

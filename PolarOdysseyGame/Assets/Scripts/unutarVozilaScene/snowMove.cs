@@ -6,7 +6,7 @@ public class snow : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed = 10;
-    public float deadZone = 100;
+    public float deadZone = -200;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +17,9 @@ public class snow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position - (Vector3.back * moveSpeed) * Time.deltaTime;
+        transform.position = transform.position + (Vector3.back * moveSpeed) * Time.deltaTime;
 
-        if (transform.position.z > deadZone)
+        if (transform.position.z < deadZone)
         {
             Debug.Log("Snow Deleted");
             Destroy(gameObject);
