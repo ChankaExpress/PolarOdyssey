@@ -9,7 +9,7 @@ public class KitchenTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Proverava da li je objekat igrač
+        if (other.CompareTag("Player")) // Provjerava da li je objekat igrač
         {
             playerInZone = true;
             Debug.Log("Press F to cook");
@@ -21,7 +21,7 @@ public class KitchenTrigger : MonoBehaviour
         if (other.CompareTag("Player")) // Kada igrač napusti zonu
         {
             playerInZone = false;
-            Debug.Log(" ");
+            //Debug.Log(" ");
         }
     }
 
