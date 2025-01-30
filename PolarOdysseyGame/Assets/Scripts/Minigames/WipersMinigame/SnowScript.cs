@@ -7,9 +7,10 @@ public class SnowScript : MonoBehaviour
 {
     private RectTransform rectTransform;  
     private Rigidbody2D rb2D;      
-    public float snowSize = 2f;
-    public float broomSize = 2f;
+    public float snowSize = 100f;
+    public float broomSize = 1000f;
     private float maxDistanceSquared;
+    public float pushVelocity = 0.1f;
 
     void Start()
     {
@@ -45,6 +46,6 @@ public class SnowScript : MonoBehaviour
         if(Math.Abs(dX) > snowSize + broomSize || Math.Abs(dY) > snowSize + broomSize) return;
         if(dX*dX + dY*dY > maxDistanceSquared) return;
 
-        rb2D.velocity = 
+        rb2D.velocity = pushVelocity * new Vector2(dX, dY).normalized;
     }
 }

@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using System.Linq;
 
 public class WipersMinigame : MonoBehaviour
 {
@@ -8,20 +12,44 @@ public class WipersMinigame : MonoBehaviour
     private RectTransform colliderRectTransform;
     private Canvas canvas;
     public GameObject persistentCollider;
-    private List<SnowScript> snowObjects;
+    public Transform snowArea;
+    public List<SnowScript> snowObjects;
+    [SerializeField] GameObject[] prefabs;
+
+    public int numberOfClumps = 100;
+
+    private Vector2 minCoords = new Vector2(-450, -140);
+    private Vector2 maxCoords = new Vector2(470, 200);
+    
 
     void Start()
     {
+        if(prefabs==null) throw new Exception("No prefabs given!!!");
+
         persistentCollider.SetActive(false);
         colliderRectTransform = persistentCollider.GetComponent<RectTransform>();
         canvas = this.GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
 
+        snowArea = this.GetComponentsInChildren<Transform>(true)
+                 .FirstOrDefault(t => t.name == "SnowArea");
+
         generateSnow();
     }
 
     void generateSnow(){
-
+        for(int i=0; i<numberOfClumps; i++){
+            GameObject go = Instantiate(
+                prefabs[UnityEngine.Random.Range(0, prefabs.Length)],
+                snowArea
+            );
+            SnowScript snow = go.GetComponent<SnowScript>();
+            snow.GetComponent<RectTransform>().anchoredPosition = new Vector2(
+                UnityEngine.Random.value * (maxCoords.x - minCoords.x) + minCoords.x,
+                UnityEngine.Random.value * (maxCoords.y - minCoords.y) + minCoords.y
+            );
+            snowObjects.Add(snow);
+        }
     }
 
     void Update()

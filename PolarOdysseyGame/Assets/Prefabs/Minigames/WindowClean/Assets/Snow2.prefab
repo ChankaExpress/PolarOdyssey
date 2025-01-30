@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2804886425901976259}
   - component: {fileID: 7626577683780022217}
   m_Layer: 0
-  m_Name: Snow1
+  m_Name: Snow2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 867093497, guid: cc52a56662f482f4da24f5108eb001f7, type: 3}
+  m_Sprite: {fileID: 1171484538, guid: 06cd7c2a7e08d9a45b4d1d51850ac193, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
