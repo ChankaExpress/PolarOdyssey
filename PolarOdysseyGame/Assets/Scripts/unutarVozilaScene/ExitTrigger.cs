@@ -9,7 +9,6 @@ public class ExitTrigger : MonoBehaviour
     // Start is called before the first frame update
     private bool playerInZone = false; // Da li je igrač u zoni
     public string sceneName;
-    public SceneAsset sceneToLoad;
 
     void OnTriggerEnter(Collider other)
     {
@@ -39,10 +38,6 @@ public class ExitTrigger : MonoBehaviour
     }
     void LoadNewScene()
     {
-        if (sceneToLoad != null)
-        {
-            sceneName= sceneToLoad.name;
-        }
         SceneManager.LoadScene(sceneName); // Load the specified scene
         Debug.Log("Loading scene: " + sceneName);
     }

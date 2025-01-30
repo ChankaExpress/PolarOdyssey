@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using System.Linq;
 
-public class WipersMinigame : MonoBehaviour
+public class WipersMinigame : MonoBehaviour, IMinigameLogicController
 {
 
     private RectTransform colliderRectTransform;
@@ -16,10 +13,12 @@ public class WipersMinigame : MonoBehaviour
     public List<SnowScript> snowObjects;
     [SerializeField] GameObject[] prefabs;
 
-    public int numberOfClumps = 100;
+    private MinigameInteractable minigameInteractable;
 
-    private Vector2 minCoords = new Vector2(-450, -140);
-    private Vector2 maxCoords = new Vector2(470, 200);
+    public int numberOfClumps = 300;
+
+    private Vector2 minCoords = new Vector2(-800, -300);
+    private Vector2 maxCoords = new Vector2(800, 400);
     
 
     void Start()
@@ -55,6 +54,7 @@ public class WipersMinigame : MonoBehaviour
     void Update()
     {
         processMouse();
+        if(Input.GetKeyDown(KeyCode.Escape)) minigameInteractable.EndGame();
     }
 
     void processMouse(){
@@ -93,5 +93,10 @@ public class WipersMinigame : MonoBehaviour
 
     void OnMousePress(){
 
+    }
+
+    public void setMinigameInteractable(MinigameInteractable val)
+    {
+        this.minigameInteractable = val;
     }
 }
