@@ -13,7 +13,7 @@ public class InputToAnimation : MonoBehaviour
     protected float yInput;
     protected bool isWalking;
 
-    private IState state;
+    private AnimationState state;
     
     void Start()
     {
@@ -26,7 +26,7 @@ public class InputToAnimation : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
-        state.CalculateWalkingState();
+        state.DetermineNextState();
 
         animator.SetFloat("xMovement", xInput);
         animator.SetFloat("yMovement", yInput);
@@ -60,28 +60,28 @@ public class InputToAnimation : MonoBehaviour
         return Math.Abs(xInput) < maximumSpeedToStandStill && Math.Abs(yInput) < maximumSpeedToStandStill;
     }
 
-    abstract class IState {
+    abstract class AnimationState {
         protected InputToAnimation parent;
-        public IState(InputToAnimation parent) {
+        public AnimationState(InputToAnimation parent) {
             this.parent = parent;
         }
-        public virtual void CalculateWalkingState(){}
+        public virtual void DetermineNextState(){}
     }
 
-    class IdleState : IState {
+    class IdleState : AnimationState {
         public IdleState(InputToAnimation parent) : base(parent){}
 
-        override public void CalculateWalkingState() {
+        override public void DetermineNextState() {
             parent.isWalking = parent.isAboveMinimum();
 
             if(!parent.isUnderMaximum()) parent.state = new WalkingState(parent);
         }
     }
 
-    class WalkingState : IState {
+    class WalkingState : AnimationState {
         public WalkingState(InputToAnimation parent) : base(parent){}
 
-        override public void CalculateWalkingState() {
+        override public void DetermineNextState() {
             parent.isWalking = !parent.isUnderMaximum();
 
             if(!parent.isAboveMinimum()) parent.state = new IdleState(parent);
