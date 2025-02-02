@@ -6,6 +6,8 @@ public class StarsTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
     private bool playerInZone = false; // Da li je igrač u zoni
+    public GameObject minigameCanvas;  // canvas
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,6 +24,9 @@ public class StarsTrigger : MonoBehaviour
         {
             playerInZone = false;
             //Debug.Log(" ");
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            minigameCanvas.SetActive(false); // Automatski zatvori minigame ako igrač izađe
         }
     }
 
@@ -29,7 +34,10 @@ public class StarsTrigger : MonoBehaviour
     {
         if (playerInZone && Input.GetKeyDown(KeyCode.F)) // Ako je igrač u zoni i pritisne F
         {
-            Debug.Log("Navigation started!");
+            Debug.Log("Stars started!");
+            Cursor.visible = true;  // Prikaži kursor
+            Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
+            minigameCanvas.SetActive(!minigameCanvas.activeSelf); // Uključi/isključi minigame
         }
     }
 }
