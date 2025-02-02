@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigamePrefab: {fileID: 6512539529394777452, guid: 6c6bbeb01021f0142b974c0ddf4c8a89, type: 3}
+  interactor: {fileID: 0}
+  minigameInstance: {fileID: 0}
 --- !u!1 &7030258849542474433
 GameObject:
   m_ObjectHideFlags: 0
