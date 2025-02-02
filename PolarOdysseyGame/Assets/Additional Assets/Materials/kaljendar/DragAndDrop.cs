@@ -8,14 +8,23 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 startPosition;
     private Transform startParent;
 
-    void Awake()
+    void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        Cursor.visible = true;  // Prikaži kursor
-        Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
+        //Cursor.visible = true;  // Prikaži kursor
+        //Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
 
     }
+
+    //void Awake()
+    //{
+    //    rectTransform = GetComponent<RectTransform>();
+    //    canvasGroup = GetComponent<CanvasGroup>();
+    //    Cursor.visible = true;  // Prikaži kursor
+    //    Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
+
+    //}
 
     public void OnBeginDrag(PointerEventData eventData)
     {

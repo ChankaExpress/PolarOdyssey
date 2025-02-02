@@ -23,7 +23,10 @@ public class CalendarTrigger : MonoBehaviour
         {
             playerInZone = false;
             //Debug.Log(" ");
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             minigameCanvas.SetActive(false); // Automatski zatvori minigame ako igrač izađe
+            
         }
     }
 
@@ -32,6 +35,8 @@ public class CalendarTrigger : MonoBehaviour
         if (playerInZone && Input.GetKeyDown(KeyCode.F)) // Ako je igrač u zoni i pritisne F
         {
             Debug.Log("Calendar started!");
+            Cursor.visible = true;  // Prikaži kursor
+            Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
             minigameCanvas.SetActive(!minigameCanvas.activeSelf); // Uključi/isključi minigame
         }
     }
