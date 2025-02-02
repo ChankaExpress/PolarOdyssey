@@ -16,6 +16,21 @@ public class DropSlot : MonoBehaviour, IDropHandler
             droppedObject.transform.SetParent(transform);
             droppedObject.transform.position = transform.position;
 
+            DraggableItem draggableItem = droppedObject.GetComponent<DraggableItem>();
+            if (draggableItem != null)
+            {
+                if (draggableItem.itemIndex != correctIndex)
+                {
+                    // ako nije na ispravnom slotu, vrati ga na početnu poziciju
+                    draggableItem.transform.position = draggableItem.originalPosition;
+                }
+                else
+                {
+                    // obiljezi da je na ispravnom slotu
+                    draggableItem.SetOnCorrectSlot(true);
+                }
+            }
+
             CheckOrder();
         }
     }
