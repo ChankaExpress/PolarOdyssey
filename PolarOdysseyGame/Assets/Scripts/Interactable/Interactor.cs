@@ -52,7 +52,7 @@ interactor may walk around; once it approaches an interactable, detected by a co
     }
 
     void ProcessInput(){
-        if(!Input.GetButtonDown("Interact")) return;
+        if(!Input.GetKeyDown(KeyCode.F)) return;
 
         if(!isInteracting) FindAndInteract();
         else lastInteracted.GetComponent<IInteractable>().Interact(this);
