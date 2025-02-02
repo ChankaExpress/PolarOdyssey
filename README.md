@@ -12,5 +12,8 @@ Vozilo, Kharkovchanka, napravljeno 1957./58. u SSSR, bazirano na tenku T-54.
 
 Rukom crtani vizualni elementi, originalna glazba. 
 
+
+
 Projekt s vještine Osnove razvoja digitalnih igara (ORDI).
+
 Članovi tima: Laura Čulek, Mihael Lešković, Ada-Nela Peharda, Timoteja Piveta, Krešimir Valečić
