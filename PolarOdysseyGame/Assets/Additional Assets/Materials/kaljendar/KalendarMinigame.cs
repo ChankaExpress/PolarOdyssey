@@ -18,6 +18,7 @@ public class KalendarMinigame : MonoBehaviour, IMinigameLogicController
             return;
         }
         canvas.worldCamera = mainCamera;
+        canvas.planeDistance = 1f;
     }
 
     public void setMinigameInteractable(MinigameInteractable val)
