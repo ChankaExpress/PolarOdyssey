@@ -31,7 +31,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         Debug.Log("Begin drag");
         startPosition = rectTransform.position;
         startParent = transform.parent;
-        canvasGroup.alpha = 0.6f; // Umesto 0 (da ne nestane)
+        canvasGroup.alpha = 0.6f; // Umisto 0 da ne nestane
         canvasGroup.blocksRaycasts = false;
     }
 
