@@ -17,7 +17,7 @@ interface IFreezeInputListener {
 /*
 this script is meant to be put on the interactor collider
 */
-public class Interactor : MonoBehaviour, IFreezeInputListener
+public class Interactor : MonoBehaviour
 {
     public Transform interactorPosition;
     public float interactRange = 3.5f;
@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour, IFreezeInputListener
     private GameObject lastInteracted;
 
     private GameObject player;
-    private List<GameObject> interactables = new List<GameObject>();
+    private List<GameObject> interactablesInReach = new List<GameObject>();
     private bool inputFrozen = false;
     private IEnumerable<IFreezeInputListener> freezeListeners;
 
@@ -60,22 +60,22 @@ interactor may walk around; once it approaches an interactable, detected by a co
 
     void OnTriggerExit(Collider other) {
         if(other.gameObject.GetComponent<IInteractable>() == null) return;
-        interactables.Remove(other.gameObject);
+        interactablesInReach.Remove(other.gameObject);
     }
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.GetComponent<IInteractable>() == null) return;
-        interactables.Add(other.gameObject);
+        interactablesInReach.Add(other.gameObject);
     }
 
     void FindAndInteract()
     {
-        if(interactables.Count == 0) return;
+        if(interactablesInReach.Count == 0) return;
         float minDistance = float.MaxValue;
         GameObject closestGo = null;
 
         float distance;
-        foreach(GameObject go in interactables) {
+        foreach(GameObject go in interactablesInReach) {
             distance = (go.transform.position - player.transform.position).magnitude;
             if(minDistance > distance) {
                 minDistance = distance;
@@ -92,6 +92,7 @@ interactor may walk around; once it approaches an interactable, detected by a co
     }
 
     public void StartMinigame(){
+        this.inputFrozen = true;
         freezeListeners = FindObjectsOfType<MonoBehaviour>().ToList().OfType<IFreezeInputListener>();
         foreach(IFreezeInputListener listener in freezeListeners){
             listener.FreezeInput();
@@ -99,18 +100,9 @@ interactor may walk around; once it approaches an interactable, detected by a co
     }
 
     public void EndMinigame(){
+        this.inputFrozen = false;
         foreach(IFreezeInputListener listener in freezeListeners){
             listener.UnfreezeInput();
         }
-    }
-
-    public void FreezeInput()
-    {
-        inputFrozen = true;
-    }
-
-    public void UnfreezeInput()
-    {
-        inputFrozen = false;
     }
 }

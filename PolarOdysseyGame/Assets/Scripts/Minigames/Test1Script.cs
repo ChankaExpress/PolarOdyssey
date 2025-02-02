@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test1Script : MonoBehaviour
+public class Test1Script : MonoBehaviour, IMinigameLogicController
 {
     public List<Button> buttons;
     public List<Button> shuffledButtons;
@@ -78,5 +78,10 @@ public class Test1Script : MonoBehaviour
     IEnumerator WinGame(){
         yield return new WaitForSeconds(2f);
         minigameInteractable.EndGame();
+    }
+
+    public void setMinigameInteractable(MinigameInteractable val)
+    {
+        this.minigameInteractable = val;
     }
 }

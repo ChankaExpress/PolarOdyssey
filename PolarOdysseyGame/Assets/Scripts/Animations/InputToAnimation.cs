@@ -13,7 +13,7 @@ public class InputToAnimation : MonoBehaviour
     protected float yInput;
     protected bool isWalking;
 
-    private IState state;
+    private AnimationState state;
     
     void Start()
     {
@@ -60,15 +60,15 @@ public class InputToAnimation : MonoBehaviour
         return Math.Abs(xInput) < maximumSpeedToStandStill && Math.Abs(yInput) < maximumSpeedToStandStill;
     }
 
-    abstract class IState {
+    abstract class AnimationState {
         protected InputToAnimation parent;
-        public IState(InputToAnimation parent) {
+        public AnimationState(InputToAnimation parent) {
             this.parent = parent;
         }
         public virtual void DetermineNextState(){}
     }
 
-    class IdleState : IState {
+    class IdleState : AnimationState {
         public IdleState(InputToAnimation parent) : base(parent){}
 
         override public void DetermineNextState() {
@@ -78,7 +78,7 @@ public class InputToAnimation : MonoBehaviour
         }
     }
 
-    class WalkingState : IState {
+    class WalkingState : AnimationState {
         public WalkingState(InputToAnimation parent) : base(parent){}
 
         override public void DetermineNextState() {
