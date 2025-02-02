@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour
     private GameObject lastInteracted;
 
     private GameObject player;
-    private List<GameObject> interactablesInReach = new List<GameObject>();
+    public List<GameObject> interactablesInReach = new List<GameObject>();
     private bool inputFrozen = false;
     private IEnumerable<IFreezeInputListener> freezeListeners;
 
