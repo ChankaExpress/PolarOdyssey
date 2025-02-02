@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Mihaelove scene/Scene1.unity
+    path: Assets/Scenes/Mihaelove scene/ScenaVani.unity
     guid: 1eb1b2f76d03efd4cb0d12e0f95e9627
+  - enabled: 1
+    path: Assets/Scenes/Timotejine scene/scenaUnutarVozila.unity
+    guid: 87bfd53804224f64eb580d08252644e8
+  - enabled: 1
+    path: Assets/Scenes/Mihaelove scene/GameManagerScene.unity
+    guid: 88c0677b0524f3f4fa44396a83abeff9
   m_configObjects: {}
