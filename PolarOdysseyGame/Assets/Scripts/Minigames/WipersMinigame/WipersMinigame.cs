@@ -54,7 +54,7 @@ public class WipersMinigame : MonoBehaviour, IMinigameLogicController
     void Update()
     {
         processMouse();
-        if(Input.GetKeyDown(KeyCode.Escape)) minigameInteractable.EndGame();
+        if(Input.GetKeyDown(KeyCode.F)) minigameInteractable.EndGame();
     }
 
     void processMouse(){

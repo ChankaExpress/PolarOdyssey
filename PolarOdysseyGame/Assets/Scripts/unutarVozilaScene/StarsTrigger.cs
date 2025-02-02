@@ -7,6 +7,7 @@ public class StarsTrigger : MonoBehaviour
     // Start is called before the first frame update
     private bool playerInZone = false; // Da li je igrač u zoni
     public GameObject minigameCanvas;  // canvas
+    
 
 
     void OnTriggerEnter(Collider other)
