@@ -12,6 +12,9 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        Cursor.visible = true;  // Prikaži kursor
+        Cursor.lockState = CursorLockMode.None;  // Omogući slobodno kretanje kursora
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
