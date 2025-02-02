@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d21f6ece3b46479f0c328f8c6007e0, type: 3}
   m_Name: kharkColorGrad
   m_EditorClassIdentifier: 
-  colorMode: 3
-  topLeft: {r: 0.4509804, g: 0.8901961, b: 0.676087, a: 1}
-  topRight: {r: 0.4509804, g: 0.8901961, b: 0.6784314, a: 1}
-  bottomLeft: {r: 0.24207903, g: 0.6037736, b: 0.55008453, a: 1}
-  bottomRight: {r: 0.16629584, g: 0.3490566, b: 0.32171446, a: 1}
+  colorMode: 0
+  topLeft: {r: 0.6658667, g: 0.6658667, b: 0.90800005, a: 1}
+  topRight: {r: 0.6658667, g: 0.6658667, b: 0.90800005, a: 1}
+  bottomLeft: {r: 0.6658667, g: 0.6658667, b: 0.90800005, a: 1}
+  bottomRight: {r: 0.6658667, g: 0.6658667, b: 0.90800005, a: 1}
