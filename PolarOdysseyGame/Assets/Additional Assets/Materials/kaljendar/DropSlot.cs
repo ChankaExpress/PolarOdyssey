@@ -1,9 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DropSlot : MonoBehaviour, IDropHandler
 {
     public int correctIndex; // Indeks koji je ispravan za ovaj slot
+    private bool playerInZone = false; // Da li je igrač u zoni
+    public GameObject minigameCanvas;  // canvas
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -20,7 +22,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
     void CheckOrder()
     {
-        // Dobij sve slotove i provjeri da li su elementi na pravim mestima
+        // Dobij sve slotove i provjeri jesu li na pravim slotovima
         DropSlot[] slots = FindObjectsOfType<DropSlot>();
         bool isCorrect = true;
 
@@ -38,6 +40,11 @@ public class DropSlot : MonoBehaviour, IDropHandler
         if (isCorrect)
         {
             Debug.Log("Correct Order!");
+            //playerInZone = false;
+            //Debug.Log(" ");
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            minigameCanvas.SetActive(false); // Automatski zatvori minigame ako igrač izađe
         }
     }
 }

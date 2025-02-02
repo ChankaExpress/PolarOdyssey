@@ -31,6 +31,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         Debug.Log("Begin drag");
         startPosition = rectTransform.position;
         startParent = transform.parent;
+        canvasGroup.alpha = 0.6f; // Umesto 0 (da ne nestane)
         canvasGroup.blocksRaycasts = false;
     }
 
@@ -43,6 +44,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("end drag");
+        canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
         if (transform.parent == startParent) // Ako nije postavljen na slot, vrati na početnu poziciju
